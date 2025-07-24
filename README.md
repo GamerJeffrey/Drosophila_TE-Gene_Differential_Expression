@@ -290,12 +290,6 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
 
-## 📞 Support
-
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/yourusername/drosophila-te-pipeline/issues)
-- 💬 **Questions**: [GitHub Discussions](https://github.com/yourusername/drosophila-te-pipeline/discussions)
-- 📧 **Email**: your.email@institution.edu
-
 ## 🏷️ Version History
 
 - **v1.0.0** - Initial release with basic TEToolkit integration
