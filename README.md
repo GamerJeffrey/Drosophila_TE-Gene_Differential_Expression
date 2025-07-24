@@ -223,7 +223,7 @@ See [Troubleshooting Guide](docs/TROUBLESHOOTING.md) for detailed solutions.
 
 ## 📚 Documentation
 
-- [User Guide](/USER_GUIDE.md) - Comprehensive usage instructions
+- [User Guide](main/USER_GUIDE.md) - Comprehensive usage instructions
 - [Reference Setup](docs/REFERENCE_SETUP.md) - How to prepare reference files
 - [Output Guide](docs/OUTPUT_GUIDE.md) - Understanding your results
 - [Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues and solutions
