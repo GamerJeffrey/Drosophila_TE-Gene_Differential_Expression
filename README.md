@@ -2,8 +2,6 @@
 
 A comprehensive pipeline for analyzing transposable element (TE) expression in *Drosophila melanogaster* RNA-seq data using TEToolkit and Casey Bergman's TE library.
 
-![Pipeline Overview](docs/images/pipeline_overview.png)
-
 ## 🔬 Overview
 
 This pipeline provides an integrated approach for quantifying both gene and transposable element expression from RNA-seq data. It uses TEToolkit's specialized algorithms to handle the challenges of mapping reads to repetitive genomic regions.
