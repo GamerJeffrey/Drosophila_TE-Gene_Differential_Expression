@@ -1,0 +1,97 @@
+# Sample Configuration Template for Drosophila TE Pipeline
+# Copy this file and modify for your experiment
+
+# =============================================================================
+# PROJECT SETTINGS
+# =============================================================================
+
+PROJECT_NAME="my_te_experiment"
+
+# =============================================================================
+# REFERENCE FILE PATHS - UPDATE THESE FOR YOUR SYSTEM
+# =============================================================================
+
+REFERENCE_DIR="/path/to/your/references/dm6_bergman"
+GENOME_FILE="$REFERENCE_DIR/DM6_genome.fasta"
+GTF_FILE="$REFERENCE_DIR/dmel_genes.gtf"
+REPEATMASKER_FILE="$REFERENCE_DIR/DM6_genome.fasta.out"
+BERGMAN_TE_LIBRARY="$REFERENCE_DIR/D_mel_transposon_sequence_set.fa"
+PYTHON_SCRIPT="$REFERENCE_DIR/create_te_gtf.py"
+R_SCRIPT="$REFERENCE_DIR/seperate_counts.R"
+
+# =============================================================================
+# SAMPLE DEFINITIONS - MODIFY THIS SECTION
+# =============================================================================
+
+# Format Option 1 (Simple): "sample_name:condition:read1_path:read2_path"
+# Format Option 2 (Extended): "sample_name:condition:timepoint:replicate:read1_path:read2_path"
+
+SAMPLES=(
+    "control_rep1:control:/path/to/fastq/ctrl_rep1_R1.fastq.gz:/path/to/fastq/ctrl_rep1_R2.fastq.gz"
+    "control_rep2:control:/path/to/fastq/ctrl_rep2_R1.fastq.gz:/path/to/fastq/ctrl_rep2_R2.fastq.gz"
+    "control_rep3:control:/path/to/fastq/ctrl_rep3_R1.fastq.gz:/path/to/fastq/ctrl_rep3_R2.fastq.gz"
+    "treated_rep1:treated:/path/to/fastq/treat_rep1_R1.fastq.gz:/path/to/fastq/treat_rep1_R2.fastq.gz"
+    "treated_rep2:treated:/path/to/fastq/treat_rep2_R1.fastq.gz:/path/to/fastq/treat_rep2_R2.fastq.gz"
+    "treated_rep3:treated:/path/to/fastq/treat_rep3_R1.fastq.gz:/path/to/fastq/treat_rep3_R2.fastq.gz"
+)
+
+# Example for time course experiment:
+# SAMPLES=(
+#     "ctrl_0h_rep1:control:0h:1:/path/to/ctrl_0h_rep1_R1.fastq.gz:/path/to/ctrl_0h_rep1_R2.fastq.gz"
+#     "ctrl_0h_rep2:control:0h:2:/path/to/ctrl_0h_rep2_R1.fastq.gz:/path/to/ctrl_0h_rep2_R2.fastq.gz"
+#     "ctrl_4h_rep1:control:4h:1:/path/to/ctrl_4h_rep1_R1.fastq.gz:/path/to/ctrl_4h_rep1_R2.fastq.gz"
+#     "ctrl_4h_rep2:control:4h:2:/path/to/ctrl_4h_rep2_R1.fastq.gz:/path/to/ctrl_4h_rep2_R2.fastq.gz"
+#     "treat_0h_rep1:treated:0h:1:/path/to/treat_0h_rep1_R1.fastq.gz:/path/to/treat_0h_rep1_R2.fastq.gz"
+#     "treat_0h_rep2:treated:0h:2:/path/to/treat_0h_rep2_R1.fastq.gz:/path/to/treat_0h_rep2_R2.fastq.gz"
+#     "treat_4h_rep1:treated:4h:1:/path/to/treat_4h_rep1_R1.fastq.gz:/path/to/treat_4h_rep1_R2.fastq.gz"
+#     "treat_4h_rep2:treated:4h:2:/path/to/treat_4h_rep2_R1.fastq.gz:/path/to/treat_4h_rep2_R2.fastq.gz"
+# )
+
+# =============================================================================
+# PIPELINE STEP CONTROL
+# =============================================================================
+
+RUN_MODULES=1        # Load modules and verify tools
+RUN_VALIDATE=1       # Validate input files
+RUN_SETUP=1          # Setup project directories
+RUN_REFERENCES=1     # Prepare reference files and build indices
+RUN_SAMPLES=1        # Process samples (QC, trimming, alignment)
+RUN_TETOOLKIT=1      # Run TEToolkit analysis
+RUN_RESULTS=1        # Process TEToolkit results
+RUN_REPORTS=1        # Generate final reports
+
+# =============================================================================
+# RESOURCE SETTINGS
+# =============================================================================
+
+THREADS=16           # Number of CPU cores to use
+MEMORY_GB=128        # Memory in GB
+
+# =============================================================================
+# TETOOLKIT OPTIONS
+# =============================================================================
+
+TETOOLKIT_MODE="multi"      # multi, uniq - how to handle multi-mapping reads
+TETOOLKIT_FORMAT="BAM"      # BAM or SAM
+TETOOLKIT_STRANDED="yes"    # no, yes, reverse - match your library prep
+
+# Strand specificity guide:
+# "no"      - Unstranded libraries (most common)
+# "yes"     - Forward stranded (dUTP method)
+# "reverse" - Reverse stranded (typical Illumina TruSeq)
+
+# =============================================================================
+# SLURM SETTINGS - ADJUST FOR YOUR HPC SYSTEM
+# =============================================================================
+
+# Uncomment and modify these lines in the main script:
+# #SBATCH --job-name=my_te_analysis
+# #SBATCH --nodes=1
+# #SBATCH --ntasks=1
+# #SBATCH --cpus-per-task=16
+# #SBATCH --mem=128G
+# #SBATCH --time=12:00:00
+# #SBATCH --partition=general        # Change to your partition
+# #SBATCH --qos=general             # Change to your QOS
+# #SBATCH --output=te_analysis_%j.out
+# #SBATCH --error=te_analysis_%j.err
