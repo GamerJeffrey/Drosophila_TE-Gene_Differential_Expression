@@ -18,6 +18,7 @@ REPEATMASKER_FILE="$REFERENCE_DIR/DM6_genome.fasta.out"
 BERGMAN_TE_LIBRARY="$REFERENCE_DIR/D_mel_transposon_sequence_set.fa"
 PYTHON_SCRIPT="$REFERENCE_DIR/create_te_gtf.py"
 R_SCRIPT="$REFERENCE_DIR/seperate_counts.R"
+PLOTS_SCRIPT="$REFERENCE_DIR/create_deseq2_plots.R"
 
 # =============================================================================
 # SAMPLE DEFINITIONS - MODIFY THIS SECTION
